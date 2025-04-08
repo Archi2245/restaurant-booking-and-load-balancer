@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Restaurant Booking System{% endblock %}</title>
+    <style>
+        .navbar {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        .navbar a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #333;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            margin: 20px;
+        }
+        .flash-message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .flash-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .flash-warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .flash-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('show_restaurants') }}">Restaurants</a>
+        <a href="{{ url_for('restaurant_stats') }}">Statistics</a>
+        {% if 'user_id' in session %}
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('auth.login') }}">Login</a>
+            <a href="{{ url_for('auth.register') }}">Register</a>
+        {% endif %}
+    </div>
+
+    <div class="content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="flash-message flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurants</title>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div style="margin-top: 20px; margin-bottom: 20px;">
+        <a href="{{ url_for('home') }}">Home</a> | 
+        <a href="{{ url_for('restaurant_stats') }}">View Statistics</a>
+        {% if 'user_id' in session %}
+        | <a href="{{ url_for('auth.logout') }}">Logout</a>
+        {% else %}
+        | <a href="{{ url_for('auth.login') }}">Login</a>
+        | <a href="{{ url_for('auth.register') }}">Register</a>
+        {% endif %}
+    </div>
+
+    <h2>Restaurant List</h2>
+    
+    <form method="GET" action="{{ url_for('show_restaurants') }}">
+        <label>Search City:</label>
+        <input type="text" name="city" value="{{ request.args.get('city', 'Pune') }}">
+        <button type="submit">Search</button>
+    </form>
+    
+    <h3>From Database</h3>
+    <ul>
+        {% for r in db_restaurants %}
+            <li>{{ r.name }} ({{ r.location }}) - 
+                <a href="{{ url_for('book_table', restaurant_id=r.restaurant_id) }}">Book</a>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <h3>From OpenStreetMap</h3>
+    <ul>
+        {% for r in osm_restaurants %}
+            <li>{{ r.name }} (Lat: {{ r.lat }}, Lon: {{ r.lon }}) - 
+                <a href="{{ url_for('book_table', restaurant_id=r.restaurant_id) }}">Book</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

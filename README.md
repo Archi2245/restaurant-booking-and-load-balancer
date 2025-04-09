@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Restaurant Booking and Load Balancer System
 
 A comprehensive system for restaurant booking with intelligent load balancing features, built with Python, Flask, and MySQL.
@@ -49,7 +49,7 @@ The system uses a comprehensive MySQL database with the following main tables:
 - Database maintenance and optimization
 - System activity monitoring
 - Performance analysis for database queries
-=======
+
 # Restaurant Booking and Load Balancer System
 
 A comprehensive system for restaurant booking with intelligent load balancing features, built with Python, Flask, and MySQL.

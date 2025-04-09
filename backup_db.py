@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Create a new file: backup_db.py
 
 import os
@@ -90,7 +90,7 @@ def restore_database(backup_file):
 # Run backup if script is executed directly
 if __name__ == "__main__":
     success, message = backup_database()
-=======
+
 # Create a new file: backup_db.py
 
 import os
@@ -182,5 +182,5 @@ def restore_database(backup_file):
 # Run backup if script is executed directly
 if __name__ == "__main__":
     success, message = backup_database()
->>>>>>> 57f6e82f9ad6d84ab1677a261efbb509e5e9059e
+
     print("Backup completed" if success else f"Backup failed: {message}")

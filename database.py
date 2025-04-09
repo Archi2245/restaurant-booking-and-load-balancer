@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Create a new file: database.py
 
 import mysql.connector
@@ -231,7 +231,6 @@ def update_busy_hours_prediction(restaurant_id):
     conn.commit()
     cursor.close()
     conn.close()
-=======
 # Create a new file: database.py
 
 import mysql.connector
@@ -464,5 +463,5 @@ def update_busy_hours_prediction(restaurant_id):
     conn.commit()
     cursor.close()
     conn.close()
->>>>>>> 57f6e82f9ad6d84ab1677a261efbb509e5e9059e
+
     return True

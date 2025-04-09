@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -81,7 +81,7 @@ def logout():
     session.clear()
     flash("You’ve been logged out.", "info")
     return redirect(url_for('home'))
-=======
+
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -164,4 +164,4 @@ def logout():
     session.clear()
     flash("You’ve been logged out.", "info")
     return redirect(url_for('home'))
->>>>>>> 57f6e82f9ad6d84ab1677a261efbb509e5e9059e
+

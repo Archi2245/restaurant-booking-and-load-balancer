@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 Flask==2.0.1
 mysql-connector-python==8.0.26
 python-dotenv==0.19.0
 requests==2.26.0
+=======
+Flask==2.0.1
+mysql-connector-python==8.0.26
+python-dotenv==0.19.0
+requests==2.26.0
+>>>>>>> 57f6e82f9ad6d84ab1677a261efbb509e5e9059e
 Werkzeug==2.0.1

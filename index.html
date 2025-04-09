@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>Welcome to the Restaurant Booking System</h1>
+    <p>Your one-stop solution for restaurant bookings!</p>
+
+    <!-- Navigation Bar -->
+    <div style="margin-top: 20px; margin-bottom: 20px;">
+        <a href="{{ url_for('home') }}">Home</a> | 
+        <a href="{{ url_for('show_restaurants') }}">View Restaurants</a> | 
+        <a href="{{ url_for('restaurant_stats') }}">View Statistics</a>
+        {% if 'user_id' in session %}
+        | <a href="{{ url_for('auth.logout') }}">Logout</a>
+        {% else %}
+        | <a href="{{ url_for('auth.login') }}">Login</a>
+        | <a href="{{ url_for('auth.register') }}">Register</a>
+        {% endif %}
+    </div>
+</body>
+</html>

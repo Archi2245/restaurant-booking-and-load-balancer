@@ -1,0 +1,73 @@
+<!-- templates/booking.html (updated) -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Table</title>
+    <script>
+        // Simple AJAX function to get available slots
+        function getAvailableSlots() {
+            const restaurantId = {{ restaurant_id }};
+            const date = document.getElementById('booking_date').value;
+            const partySize = document.getElementById('num_people').value;
+            
+            fetch(`/api/available-slots?restaurant_id=${restaurantId}&date=${date}&party_size=${partySize}`)
+                .then(response => response.json())
+                .then(data => {
+                    const slotSelect = document.getElementById('slot_id');
+                    slotSelect.innerHTML = '';
+                    
+                    if (data.length === 0) {
+                        slotSelect.innerHTML = '<option value="">No slots available</option>';
+                        return;
+                    }
+                    
+                    data.forEach(slot => {
+                        const option = document.createElement('option');
+                        option.value = slot.slot_id;
+                        option.textContent = `${slot.start_time} - ${slot.end_time}`;
+                        slotSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching slots:', error);
+                });
+        }
+    </script>
+</head>
+<body>
+    <h2>Book a Table</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div style="color: green;">{{ message }}</div>
+        {% endfor %}
+    {% endwith %}
+    
+    <form method="POST">
+        <div>
+            <label>Date:</label>
+            <input type="date" id="booking_date" name="booking_date" required min="{{ min_date }}" onchange="getAvailableSlots()">
+        </div>
+        
+        <div>
+            <label>Number of People:</label>
+            <input type="number" id="num_people" name="num_people" required min="1" value="2" onchange="getAvailableSlots()">
+        </div>
+        
+        <div>
+            <label>Available Time Slots:</label>
+            <select id="slot_id" name="slot_id" required>
+                <option value="">Select a date and party size first</option>
+            </select>
+        </div>
+        
+        <div>
+            <label>Special Requests:</label>
+            <textarea name="special_requests" rows="3"></textarea>
+        </div>
+        
+        <button type="submit">Confirm Booking</button>
+    </form>
+    
+    <a href="{{ url_for('show_restaurants') }}">Back to Restaurants</a>
+</body>
+</html>

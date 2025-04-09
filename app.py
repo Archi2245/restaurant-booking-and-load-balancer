@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session, flash
 import mysql.connector
 from dotenv import load_dotenv
@@ -448,4 +448,4 @@ def restaurant_stats():
 # Entry point
 if __name__ == '__main__':
     app.run(debug=True)
->>>>>>> 57f6e82f9ad6d84ab1677a261efbb509e5e9059e
+

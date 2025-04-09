@@ -231,7 +231,7 @@ def api_restaurant_occupancy():
 # Entry point
 if __name__ == '__main__':
     app.run(debug=True)
-=======
+
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session, flash
 import mysql.connector
 from dotenv import load_dotenv

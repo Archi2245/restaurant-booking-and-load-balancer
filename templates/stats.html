@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Analytics Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">📊 Analytics Dashboard</h2>
+
+    <!-- Top Restaurants -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">Top 5 Most Booked Restaurants</div>
+        <ul class="list-group list-group-flush">
+            {% for r in stats.top_restaurants %}
+            <li class="list-group-item d-flex justify-content-between">
+                {{ r.name }}
+                <span class="badge bg-success">{{ r.booking_count }} bookings</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Occupancy Overview -->
+    <div class="card mb-4">
+        <div class="card-header bg-secondary text-white">Occupancy Summary</div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Total Customers: <strong>{{ stats.occupancy.total_customers }}</strong></li>
+            <li class="list-group-item">Average Occupancy: <strong>{{ stats.occupancy.avg_occupancy | round(2) }}</strong></li>
+            <li class="list-group-item">Max Occupancy: <strong>{{ stats.occupancy.max_occupancy }}</strong></li>
+            <li class="list-group-item">Average Occupancy %: <strong>{{ stats.occupancy.avg_occupancy_percent | round(2) }}%</strong></li>
+        </ul>
+    </div>
+
+    <!-- Bookings by Day -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">Weekly Booking Trends</div>
+        <ul class="list-group list-group-flush">
+            {% for b in stats.booking_by_day %}
+            <li class="list-group-item d-flex justify-content-between">
+                {{ b.day_name }}
+                <span class="badge bg-dark">{{ b.booking_count }} bookings</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Source-wise Stats -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">Source Statistics</div>
+        <ul class="list-group list-group-flush">
+            {% for s in stats.source_stats %}
+            <li class="list-group-item d-flex justify-content-between">
+                Source: <strong>{{ s.source }}</strong>
+                <span>Total Restaurants: {{ s.restaurant_count }} | Customers: {{ s.total_customers }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EatEase - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .carousel-item {
+      position: relative;
+      height: 85vh;
+      min-height: 400px;
+    }
+
+    .carousel-image-wrapper {
+      position: relative;
+      height: 100%;
+    }
+
+    .carousel-image-wrapper img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-image-wrapper .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+      z-index: 2;
+    }
+
+    .carousel-caption-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      z-index: 3;
+    }
+
+    .carousel-caption-center h2, .carousel-caption-center p {
+      text-shadow: 1px 1px 5px black;
+    }
+
+    .carousel-caption-center .btn {
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 18px;
+      background-color: #ffc107;
+      border: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .carousel-caption-center .btn:hover {
+      background-color: #ff9900;
+      color: white;
+    }
+
+    footer {
+      background-color: #343a40;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">EatEase</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('show_restaurants') }}">Restaurants</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section Carousel -->
+  <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+      <div class="carousel-item active" data-bs-interval="3000">
+        <div class="carousel-image-wrapper">
+          <img src="{{ url_for('static', filename='images/restaurant_banner.jpg') }}" class="d-block w-100" alt="Banner">
+          <div class="overlay"></div>
+          <div class="carousel-caption-center">
+            <h2>Welcome to EatEase</h2>
+            <p>Book tables instantly. Enjoy crowd-free dining!</p>
+            <a href="{{ url_for('show_restaurants') }}" class="btn">Browse Restaurants</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item" data-bs-interval="3000">
+        <div class="carousel-image-wrapper">
+          <img src="{{ url_for('static', filename='images/image1.jpg') }}" class="d-block w-100" alt="Food 1">
+          <div class="overlay"></div>
+          <div class="carousel-caption-center">
+            <h2>Explore the Best Cuisines</h2>
+            <p>From street food to fine dining – we cover it all.</p>
+            <a href="{{ url_for('show_restaurants') }}" class="btn">Browse Restaurants</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item" data-bs-interval="3000">
+        <div class="carousel-image-wrapper">
+          <img src="{{ url_for('static', filename='images/image2.jpg') }}" class="d-block w-100" alt="Food 2">
+          <div class="overlay"></div>
+          <div class="carousel-caption-center">
+            <h2>Reserve Seamlessly</h2>
+            <p>Get the best seat without waiting in line.</p>
+            <a href="{{ url_for('show_restaurants') }}" class="btn">Browse Restaurants</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item" data-bs-interval="3000">
+        <div class="carousel-image-wrapper">
+          <img src="{{ url_for('static', filename='images/image3.jpg') }}" class="d-block w-100" alt="Food 3">
+          <div class="overlay"></div>
+          <div class="carousel-caption-center">
+            <h2>Book. Dine. Repeat.</h2>
+            <p>Smart dining starts with EatEase.</p>
+            <a href="{{ url_for('show_restaurants') }}" class="btn">Browse Restaurants</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p class="mb-0">&copy; 2025 EatEase. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

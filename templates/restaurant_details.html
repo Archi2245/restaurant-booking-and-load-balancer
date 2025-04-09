@@ -1,0 +1,44 @@
+<!-- templates/restaurant_details.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Details</title>
+</head>
+<body>
+    <h1>{{ restaurant.name }}</h1>
+    <p>Location: {{ restaurant.location }}</p>
+    <p>Category: {{ restaurant.category_name or 'Not categorized' }}</p>
+    <p>Current Occupancy: {{ restaurant.current_occupancy }}/{{ restaurant.seating_capacity }}</p>
+    <p>Average Rating: {{ restaurant.avg_rating|round(1) }} / 5</p>
+    
+    <h2>Menu</h2>
+    {% if menu_items %}
+        <ul>
+        {% for item in menu_items %}
+            <li>{{ item.name }} - ${{ item.price }} 
+            {% if item.is_vegetarian %}(Vegetarian){% endif %}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Menu information not available</p>
+    {% endif %}
+    
+    <h2>Reviews</h2>
+    {% if reviews %}
+        {% for review in reviews %}
+            <div>
+                <p>Rating: {{ review.rating }}/5 by {{ review.user_name }}</p>
+                <p>{{ review.review_text }}</p>
+                <small>{{ review.review_date }}</small>
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>No reviews yet</p>
+    {% endif %}
+    
+    <a href="{{ url_for('book_table', restaurant_id=restaurant.restaurant_id) }}">Book a Table</a>
+    <a href="{{ url_for('review_restaurant', restaurant_id=restaurant.restaurant_id) }}">Write a Review</a>
+    <a href="{{ url_for('show_restaurants') }}">Back to Restaurant List</a>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!-- templates/admin/db_maintenance.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Database Maintenance</title>
+</head>
+<body>
+    <h1>Database Maintenance</h1>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div style="color: green;">{{ message }}</div>
+        {% endfor %}
+    {% endwith %}
+    
+    <h2>Database Size: {{ stats.db_size.total_db_size_mb }} MB</h2>
+    
+    <h3>Table Sizes</h3>
+    <table border="1">
+        <tr>
+            <th>Table Name</th>
+            <th>Rows</th>
+            <th>Data Size (MB)</th>
+            <th>Index Size (MB)</th>
+            <th>Total Size (MB)</th>
+        </tr>
+        {% for table in stats.table_sizes %}
+        <tr>
+            <td>{{ table.table_name }}</td>
+            <td>{{ table.table_rows }}</td>
+            <td>{{ table.data_size_mb }}</td>
+            <td>{{ table.index_size_mb }}</td>
+            <td>{{ table.total_size_mb }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h3>Maintenance Actions</h3>
+    <form method="POST">
+        <button type="submit" name="action" value="optimize">Optimize Tables</button>
+        <button type="submit" name="action" value="backup">Create Backup</button>
+        <button type="submit" name="action" value="cleanup">Clean Old Logs</button>
+    </form>
+    
+    <a href="{{ url_for('admin_dashboard') }}">Back to Admin Dashboard</a>
+</body>
+</html>

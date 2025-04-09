@@ -1,0 +1,45 @@
+<!-- templates/suggested_restaurants.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Suggested Restaurants</title>
+</head>
+<body>
+    <h2>Suggested Restaurants (Load Balanced)</h2>
+    
+    <form method="GET" action="{{ url_for('suggested_restaurants') }}">
+        <label>City:</label>
+        <input type="text" name="city" value="{{ selected_city or '' }}">
+        
+        <label>Category:</label>
+        <select name="category">
+            <option value="">All Categories</option>
+            {% for category in categories %}
+                <option value="{{ category.category_id }}" 
+                        {% if selected_category == category.category_id %}selected{% endif %}>
+                    {{ category.category_name }}
+                </option>
+            {% endfor %}
+        </select>
+        
+        <button type="submit">Search</button>
+    </form>
+    
+    <h3>Recommended Restaurants (Based on Current Load)</h3>
+    <ul>
+        {% for r in restaurants %}
+            <li>
+                <strong>{{ r.name }}</strong> ({{ r.location }})<br>
+                Current Occupancy: {{ r.current_occupancy }} / {{ r.seating_capacity }} 
+                ({{ (r.occupancy_rate * 100)|round }}%)<br>
+                Rating: {{ r.avg_rating|round(1) }} / 5<br>
+                <a href="{{ url_for('restaurant_details', restaurant_id=r.restaurant_id) }}">View Details</a> |
+                <a href="{{ url_for('book_table', restaurant_id=r.restaurant_id) }}">Book</a>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+    
+    <a href="{{ url_for('show_restaurants') }}">Back to All Restaurants</a>
+</body>
+</html>

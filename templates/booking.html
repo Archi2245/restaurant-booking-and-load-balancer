@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Book Table{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Book a Table</h2>
+<form id="booking-form" method="POST">
+
+    <form method="POST" action="{{ url_for('book_table', restaurant_id=restaurant_id) }}">
+        <div class="mb-3">
+            <label for="num_people" class="form-label">Number of People</label>
+            <input type="number" name="num_people" id="num_people" class="form-control" min="1" max="10" required>
+        </div>
+        <button type="submit" class="btn btn-success">Book Now</button>
+        <a href="{{ url_for('show_restaurants') }}" class="btn btn-secondary">Back to Restaurants</a>
+    </form>
+</div>
+{% endblock %}

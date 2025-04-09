@@ -1,0 +1,18 @@
+<!-- templates/admin/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    
+    <ul>
+        <li><a href="{{ url_for('db_maintenance') }}">Database Maintenance</a></li>
+        <li><a href="{{ url_for('admin_activity_logs') }}">Activity Logs</a></li>
+        <li><a href="{{ url_for('admin_query_performance') }}">Query Performance</a></li>
+    </ul>
+    
+    <a href="{{ url_for('home') }}">Back to Home</a>
+</body>
+</html>

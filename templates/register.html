@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4">Register</h2>
+        <form method="POST" action="{{ url_for('auth.register') }}">
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="10-digit mobile number" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Create Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Choose a password" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Register</button>
+        </form>
+        <p class="text-center mt-3">Already have an account? <a href="{{ url_for('auth.login') }}">Login</a></p>
+    </div>
+</div>
+{% endblock %}

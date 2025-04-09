@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Available Restaurants</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for restaurant in restaurants %}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ restaurant.name }}</h5>
+                    <p class="card-text">
+                        <strong>Location:</strong> {{ restaurant.location }}<br>
+                        <strong>Category:</strong> {{ restaurant.category_name }}<br>
+                        <strong>Occupancy:</strong>
+                        {% if restaurant.occupancy < 30 %}
+                            <span class="badge bg-success">Low</span>
+                        {% elif restaurant.occupancy < 70 %}
+                            <span class="badge bg-warning text-dark">Medium</span>
+                        {% else %}
+                            <span class="badge bg-danger">High</span>
+                        {% endif %}
+                    </p>
+                    <a href="{{ url_for('book_restaurant', restaurant_id=restaurant.id) }}" class="btn btn-primary w-100">Book Now</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
